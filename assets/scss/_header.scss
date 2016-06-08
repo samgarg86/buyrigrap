@@ -29,10 +29,35 @@ header.navbar {
 		a {
 			img {
 				max-width: 110%;
+				@media (max-width: $small) {
+					max-width: 100%;
+				}
 			}
 			&:hover {
 				opacity: 0.7;
 			}
+		}
+	}
+
+	.header-cart {
+		//text-align: right;
+		font-size: 1.5rem;
+
+		.wpmenucart-contents {
+			color: #FEF03A;
+		}
+
+		.nav>li>a {
+			&:focus,
+			&:hover {
+				background: none;
+				color: white;
+			}
+			padding: 0;
+		}
+
+		.header-middle & {
+
 		}
 	}
 	.header-middle {
@@ -53,6 +78,10 @@ header.navbar {
 
 		@media (max-width: $small) {
 			font-size: 17px;
+			padding: 0;
+			.header-cart {
+				font-size: 1.8rem;
+			}
 		}
 	}
 	.header-right{

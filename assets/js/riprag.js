@@ -50,6 +50,9 @@ jQuery(function(){
 		}
 	});
 
+	// Menu bar cart plugin - cart icon point to checkout page instead of cart
+	jQuery('.wpmenucart-contents').attr('href', '/checkout');
+
 
 	//jQuery('.rigrap-cart .product-remove .remove1').click(function(){
 	//
