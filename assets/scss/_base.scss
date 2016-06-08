@@ -1,0 +1,144 @@
+$small: 768px;
+$medium: 992px;
+$large: 1200px;
+$red: #FE0000;
+$light-blue: #8EE7FD;
+$dark-blue: #2B5585;
+$grey: #E6E6E6;
+$green: #007A42;
+$purple: #3E4095;
+$cart-yellow: #FFFFCB;
+
+html {
+	font-size: 105%;
+
+	@media (max-width: $large) {
+		font-size: 90%;
+	}
+	@media (max-width: $medium) {
+		font-size: 75%;
+	}
+	@media (max-width: $small) {
+		font-size: 70%;
+	}
+}
+
+body {
+	font-family: 'Anton', sans-serif;
+	font-size: 1rem;
+	letter-spacing: 0.01em;
+	color: black;
+	background-color: $light-blue;
+	padding-top: 160px;
+	@media (max-width: $small) and (orientation:landscape) {
+		padding-top: 100px;
+	}
+
+	@media (min-width: $small) and (max-width: $medium) {
+		padding-top: 100px;
+	}
+}
+
+img {
+	max-width: 100%;
+}
+
+#theme-wrapper h1.page-title {
+	display: none;
+}
+
+h1 {
+	font-size: 3.9rem;
+	margin: 20px 0;
+}
+
+h2 {
+	font-size: 2.7rem;
+	margin: 10px 0;
+}
+
+// 10 column layout
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+	position: relative;
+	min-height: 1px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+.col-xs-15 {
+	width: 20%;
+	float: left;
+}
+@media (min-width: 768px) {
+	.col-sm-15 {
+		width: 20%;
+		float: left;
+	}
+}
+@media (min-width: 992px) {
+	.col-md-15 {
+		width: 20%;
+		float: left;
+	}
+}
+@media (min-width: 1200px) {
+	.col-lg-15 {
+		width: 20%;
+		float: left;
+	}
+}
+
+.spacer-upper-10 {
+	margin-top: 10px;
+}
+.spacer-upper-15 {
+	margin-top: 15px;
+}
+.spacer-upper-20 {
+	margin-top: 20px;
+}
+.spacer-upper-30 {
+	margin-top: 30px;
+}
+.spacer-bottom-10 {
+	margin-bottom: 10px;
+}
+.spacer-bottom-15 {
+	margin-bottom: 15px;
+}
+.spacer-bottom-20 {
+	margin-bottom: 20px;
+}
+.spacer-bottom-30 {
+	margin-bottom: 30px;
+}
+.spacer-10 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.spacer-15 {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.spacer-20 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.spacer-30 {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.spacer-horizontal-30 {
+	margin-right: 30px;
+	margin-left: 30px;
+}
+
+.text-blue {
+	color: $dark-blue;
+}
+
+

@@ -1,0 +1,26 @@
+.value-pack-container {
+	position: relative;
+}
+.upsell .value-pack-container {
+	margin: 15px;
+}
+.value-pack,
+.value-pack-price {
+	display: inline-block;
+	vertical-align: top;
+}
+.value-pack {
+	width: 70%;
+}
+.value-pack-price {
+	width: 44%;
+	margin-left: -16%;
+}
+
+@media (max-width: $small) {
+	.value-pack,
+	.value-pack-price {
+		width: 100%;
+		margin-left: 0;
+	}
+}
