@@ -362,6 +362,10 @@ header.navbar {
   color: #007A42;
   font-weight: bold; }
 
+.disabled {
+  pointer-events: none;
+  opacity: .5 !important; }
+
 .rigrap-cart, .rigrap-checkout {
   font-family: arial, helvetica;
   font-size: 1.5rem;
@@ -409,9 +413,6 @@ header.navbar {
     /* Opera */
     padding: 10px;
     margin: 0; }
-  .rigrap-cart .disabled, .rigrap-checkout .disabled {
-    pointer-events: none;
-    opacity: .5 !important; }
   .rigrap-cart .rigrap-add-to-cart p.product.woocommerce.add_to_cart_inline a.add_to_cart_button, .rigrap-checkout .rigrap-add-to-cart p.product.woocommerce.add_to_cart_inline a.add_to_cart_button {
     padding: 10px 15px; }
   .rigrap-cart .cart-empty,

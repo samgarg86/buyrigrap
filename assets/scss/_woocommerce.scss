@@ -1,3 +1,8 @@
+.disabled {
+	pointer-events: none;
+	opacity: .5 !important;
+}
+
 .rigrap-cart, .rigrap-checkout {
 	font-family: arial, helvetica;
 	font-size: 1.5rem;
@@ -51,11 +56,6 @@
 		-o-transform: scale(1.5); /* Opera */
 		padding: 10px;
 		margin: 0;
-	}
-
-	.disabled {
-		pointer-events: none;
-		opacity: .5 !important;
 	}
 
 	.rigrap-add-to-cart p.product.woocommerce.add_to_cart_inline a.add_to_cart_button {

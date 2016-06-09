@@ -149,17 +149,31 @@
 //		exit;
 //	}
 
+	add_action( 'wp_ajax_cart_quantities', 'cart_quantities' );
+	add_action( 'wp_ajax_nopriv_cart_quantities', 'cart_quantities' );
+
+	function cart_quantities() {
+
+		$cart = WC()->instance()->cart;
+//		ob_start();
+
+//		$resp['html'] = ob_get_clean();
+		echo json_encode($cart->get_cart_item_quantities());
+
+		exit;
+	}
+
 	remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
 	remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
 	add_action('woocommerce_before_main_content', 'my_theme_wrapper_start', 10);
 	add_action('woocommerce_after_main_content', 'my_theme_wrapper_end', 10);
 
 	function my_theme_wrapper_start() {
-		echo '<div id="rigrap-theme-wrapper">';
+		echo '';
 	}
 
 	function my_theme_wrapper_end() {
-		echo '</div>';
+		echo '';
 	}
 
 	add_action( 'after_setup_theme', 'woocommerce_support' );
@@ -183,19 +197,6 @@
       );
     }
     add_action( 'init', 'register_my_menus' );
-//
-//	function default_header_nav() { // HTML markup for a default message in menu location
-//		echo "<ul class='nav'>
-//			<li>Create the Header Navigation</li>
-//		</ul>"
-//	}
-//
-//	function default_expanded_footer() {
-//		echo "<ul class='nav'>
-//			<li>Create the Expanded Footer</li>
-//		</ul>"
-//	}
-
 
 
 	// To get rid of auto p tags

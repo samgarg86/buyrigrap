@@ -1,26 +1,86 @@
 jQuery(function(){
+	// 0 means no buying limit
+	var MAX_QUANTITIES = {
+		valuepack: 1,
+		freethreader: 1,
+		halfpricevaluepacks: 3
+	}
+
 	var $addToCart = jQuery(".add_to_cart_inline a");
-	var $addToCartFreeThreader = jQuery('.add_to_cart_inline a[data-product_sku="freethreader"]');
 
-	$addToCart.click(function(){
-		var $clicked = jQuery(this);
-		var sku = $clicked.data("product_sku");
-		if(sku === "freethreader") {
-			$clicked.addClass('disabled');
-		}
+	var getCartQuantities = function(callback) {
+		jQuery.ajax({
+			type: 'POST',
+			dataType: 'json',
+			url: "/wp-admin/admin-ajax.php",
+			data: {
+				action: "cart_quantities"
+			},
+			success: callback
+		});
+	}
 
-		var quantity = jQuery("." + sku + "-quantity").val();
-		$clicked.data("quantity", quantity);
+	var setAddToCartButtonQuantities = function($button, buying) {
+		var sku = $button.data("product_sku");
+		var product_id = $button.data("product_id");
+		var $quantityInput = jQuery("." + sku + "-quantity");
+
+		getCartQuantities(function(resp) {
+			var bought = 0;
+			var allowedToBuy = 20; //Unlimited
+
+			if (resp[product_id]) {
+				bought = resp[product_id];
+			}
+			if (buying) {
+				bought += parseInt($quantityInput.val());
+			}
+
+			if (MAX_QUANTITIES[sku]) {
+				allowedToBuy = MAX_QUANTITIES[sku];
+			}
+
+			$quantityInput.attr('max', allowedToBuy - bought);
+
+			if (bought >= allowedToBuy) {
+				$button.addClass('disabled added');
+			}
+			console.log('allowedToBuy', allowedToBuy, 'bought', bought);
+		});
+	}
+
+	// On first load, disable buttons if max quantity already added to cart
+	$addToCart.each(function(){
+		setAddToCartButtonQuantities(jQuery(this));
 	});
 
-	if(jQuery('.rigrap-cart .cart_item[data-product_sku="freethreader"]').length) {
-		$addToCartFreeThreader.addClass('disabled added');
-	}
-	else {
-		$addToCartFreeThreader.removeClass('disabled').removeClass('added');
-	}
+	$addToCart.click(function(){
+		// Send quantity from quantity input box
+		var $clicked = jQuery(this);
+		var sku = $clicked.data("product_sku");
+		var $quantity = jQuery("." + sku + "-quantity");
+		$clicked.data("quantity", $quantity.val());
+		$quantity.val(1);
 
-	jQuery('.add-to-cart-quantity .minus').click(function(e){
+		// Disable button if max quantity added to cart
+		setAddToCartButtonQuantities(jQuery(this), true);
+	});
+
+	jQuery('.cart-quantities').click(function(){
+		jQuery.ajax({
+			type: 'POST',
+			dataType: 'json',
+			url: "/wp-admin/admin-ajax.php",
+			data: {
+				action: "cart_quantities"
+			},
+			success: function(resp){
+				console.log(resp);
+			}
+		});
+	})
+
+	jQuery('.add-to-cart-quantity .minus').click(function(e) {
 		var $this = jQuery(this);
 		var $quantity = $this.siblings('.quantity');
 		var quantityVal = $quantity.val();
@@ -28,12 +88,17 @@ jQuery(function(){
 		$quantity.val(updatedQuantity);
 	});
 
-	jQuery('.add-to-cart-quantity .plus').click(function(e){
+	jQuery('.add-to-cart-quantity .plus').click(function(e) {
 		var $this = jQuery(this);
 		var $quantity = $this.siblings('.quantity');
-		var quantityVal = $quantity.val();
-		var updatedQuantity = parseInt(quantityVal) + 1;
-		$quantity.val(updatedQuantity);
+
+		var quantityVal = parseInt($quantity.val());
+		var max = parseInt ($quantity.attr('max'));
+
+		if(quantityVal < max) {
+			var updatedQuantity = parseInt(quantityVal) + 1;
+			$quantity.val(updatedQuantity);
+		}
 	});
 
 	// Hide free multi tool promo if cart is empty
@@ -52,7 +117,6 @@ jQuery(function(){
 
 	// Menu bar cart plugin - cart icon point to checkout page instead of cart
 	jQuery('.wpmenucart-contents').attr('href', '/checkout');
-
 
 	//jQuery('.rigrap-cart .product-remove .remove1').click(function(){
 	//
