@@ -32,8 +32,9 @@ jQuery(function(){
 			if (resp[product_id]) {
 				bought = resp[product_id];
 			}
-			if (buying) {
-				bought += parseInt($quantityInput.val());
+			if (buying ) {
+				bought += $quantityInput.val()? parseInt($quantityInput.val()) : 1;
+				if($quantityInput.val()) {$quantityInput.val(1);}
 			}
 
 			if (MAX_QUANTITIES[sku]) {
@@ -60,7 +61,7 @@ jQuery(function(){
 		var sku = $clicked.data("product_sku");
 		var $quantity = jQuery("." + sku + "-quantity");
 		$clicked.data("quantity", $quantity.val());
-		$quantity.val(1);
+		///$quantity.val(1);
 
 		// Disable button if max quantity added to cart
 		setAddToCartButtonQuantities(jQuery(this), true);
