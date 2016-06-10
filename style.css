@@ -722,9 +722,8 @@ p.product.woocommerce.add_to_cart_inline {
   #contact .wpcf7-form-control.wpcf7-submit {
     width: 100%; }
   #contact .address {
-    font-size: 2rem;
+    font-size: 1.8rem;
     padding-left: 50px;
-    letter-spacing: 1px;
     font-weight: normal;
     text-transform: uppercase;
-    font-family: 'Anton', sans-serif; }
+    font-family: 'Arial', sans-serif; }
