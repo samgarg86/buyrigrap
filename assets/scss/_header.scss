@@ -15,6 +15,10 @@ header.navbar {
 	padding-top: 10px;
 	padding-bottom: 0;
 
+	@media (max-width: $small) {
+		border-bottom-width: 5px;
+	}
+
 	&>.container {
 		display: table;
 		height: auto;
@@ -22,26 +26,72 @@ header.navbar {
 			padding-left: 8px;
 			padding-right: 8px;
 		}
+		text-align: center;
 	}
-	.header-logo {
-		display: table-cell;
+
+	.header-logo,
+	.header-middle,
+	.header-right
+	{
+		display: inline-block;
 		vertical-align: middle;
+		text-align: center;
+	}
+
+	.header-logo {
+		width: 23%;
 		a {
 			img {
-				max-width: 110%;
-				@media (max-width: $small) {
-					max-width: 100%;
-				}
+				max-width: 100%;
 			}
 			&:hover {
 				opacity: 0.7;
 			}
 		}
+
+		@media (max-width:$small) {
+			margin-left: 0;
+			width: 33%;
+		}
+	}
+	.header-middle {
+		width: 62%;
+		@media (max-width:$small) {
+			width: 35%;
+		}
+	}
+
+	.header-tagline {
+		color: white;
+		text-transform: uppercase;
+		font-size: 1.7rem;
+
+		@media (max-width: $large) {
+			font-size: 25px;
+			text-align: center;
+		}
+
+		@media (max-width: $medium) {
+			font-size: 18px;
+		}
+
+		@media (max-width: $small) {
+			width: 90%;
+			margin-left: 5%;
+			font-size: 14px;
+			padding: 0;
+		}
+	}
+
+	.header-right {
+		width : 9%;
+		@media (max-width:$small) {
+			width: 15%;
+		}
 	}
 
 	.header-cart {
-		//text-align: right;
-		font-size: 1.5rem;
+		font-size: 1.3rem;
 
 		.wpmenucart-contents {
 			color: #FEF03A;
@@ -56,57 +106,26 @@ header.navbar {
 			padding: 0;
 		}
 
-		.header-middle & {
-
-		}
-	}
-	.header-middle {
-		color: white;
-		text-transform: uppercase;
-		font-size: 1.7rem;
-		display: table-cell;
-		vertical-align: middle;
-
-		@media (max-width: $large) {
-			font-size: 25px;
-			text-align: center;
-		}
-
-		@media (max-width: $medium) {
-			font-size: 18px;
-		}
-
 		@media (max-width: $small) {
-			font-size: 17px;
-			padding: 0;
-			.header-cart {
-				font-size: 1.8rem;
-			}
+			font-size: 2.0rem;
 		}
 	}
-	.header-right{
-		display: table-cell;
-		vertical-align: middle;
-		&>img {
-			width: 80%;
-		}
-	}
+
 
 	@media (max-width: $small) and (orientation:landscape) {
-		.header-middle {
+		.header-tagline {
 			display: none !important;
 		}
-		padding-top: 10px;
-		padding-bottom: 10px;
+		padding-top: 5px;
+		padding-bottom: 5px;
 		.header-logo {
-			&>img {
-				width: 60%;
-			}
+			width: 30%;
+		}
+		.header-middle {
+			width: 40%;
 		}
 		.header-right {
-			&>img {
-				width: 50%;
-			}
+			width: 13%;
 		}
 	}
 }

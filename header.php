@@ -28,14 +28,16 @@
 <header class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="row">
-            <div class="header-logo col-xs-6 col-sm-3 text-left">
+            <div class="header-logo">
                 <a href="/">
-                    <img src="/wp-content/uploads/logo.png" alt="RIPRAG"/>
+                    <img src="/wordpress/wp-content/uploads/logo.png" alt="RIPRAG"/>
                 </a>
             </div>
-            <div class="header-middle col-xs-2 col-sm-7 text-right">
-                <div class="header-catch-line hidden-xs">PRE-TIE AND STORE ALL YOUR RIGS TANGLE FREE AND<br> SPEND YOUR TIME ON THE WATER FISHING,  NOT RIGGING!</div>
-                <div class="header-cart">
+            <div class="header-middle">
+                <div class="header-tagline hidden-xs">
+                    PRE-TIE AND STORE ALL YOUR RIGS TANGLE FREE AND<br> SPEND YOUR TIME ON THE WATER FISHING,  NOT RIGGING!
+                </div>
+                <div class="header-cart visible-xs">
                     <?php
                         wp_nav_menu(array(
                             'theme_location' => 'header_navigation', // menu slug from step 1
@@ -46,12 +48,25 @@
                     ?>
                 </div>
             </div>
-            <div class="header-right col-xs-4 col-sm-offset-0 col-sm-2 text-right">
-                <img src="/wp-content/uploads/as-seen-on-tv.png">
+
+            <div class="header-right">
+                <img src="/wordpress/wp-content/uploads/as-seen-on-tv.png">
+                <div class="header-cart hidden-xs">
+                    <?php
+                        wp_nav_menu(array(
+                            'theme_location' => 'header_navigation', // menu slug from step 1
+                            'container' => false, // 'div' container will not be added
+                            'menu_class' => 'nav', // <ul class="nav">
+                            'fallback_cb' => 'default_header_nav', // name of default function from step 2
+                        ));
+                    ?>
+                </div>
             </div>
         </div>
-        <div class="header-middle visible-xs text-center">
-            PRE-TIE AND STORE ALL YOUR RIGS TANGLE FREE AND SPEND YOUR TIME ON THE WATER FISHING,  NOT RIGGING!
+        <div class="row">
+            <div class="header-tagline visible-xs text-center">
+                PRE-TIE AND STORE ALL YOUR RIGS TANGLE FREE AND SPEND YOUR TIME ON THE WATER FISHING,  NOT RIGGING!
+            </div>
         </div>
     </div>
 </header>

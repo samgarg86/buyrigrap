@@ -35,8 +35,8 @@ body {
 		padding-top: 100px;
 	}
 
-	@media (min-width: $small) and (max-width: $medium) {
-		padding-top: 100px;
+	@media (max-width: $medium) {
+		padding-top: 120px;
 	}
 }
 

@@ -26,7 +26,6 @@
 		text-transform: uppercase;
 		font-size: 2.8rem;
 		margin-bottom: 20px;
-		//font-weight: bold;
 	}
 
 	h2 label,
@@ -36,8 +35,6 @@
 		margin: 0;
 		display: inline-block;
 	}
-
-
 
 	button,
 	input,
@@ -303,20 +300,19 @@
 			}
 		}
 	}
+}
 
+p.product.woocommerce.add_to_cart_inline {
+	border: none !important;
+	padding: 0 !important;
+	margin: 0!important;
 
-	p.product.woocommerce.add_to_cart_inline {
-		border: none !important;
-		padding: 0 !important;
-		margin: 0!important;
+	span.amount {
+		display: none;
+	}
 
-		span.amount {
-			display: none;
-		}
-
-		.added_to_cart {
-			display: none;
-		}
+	.added_to_cart {
+		display: none;
 	}
 }
 
@@ -328,7 +324,10 @@
 .button {
 	font-family: arial, helvetica !important;
 	font-size: 1.5rem;
+	-webkit-transition: all 0.5s ease;
+	transition: all 0.5s ease;
 	background-color: $green !important;
+	text-transform: capitalize;
 	color: white !important;
 	border: none !important;
 	border-radius: 35px;

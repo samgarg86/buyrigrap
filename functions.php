@@ -192,7 +192,7 @@
       register_nav_menus(
         array(
         	'header_navigation' => __( 'Header Navigation' ),
-        	'expanded_footer' => __( 'Expanded Footer' )
+        	'footer_navigation' => __( 'Footer Navigation' )
         )
       );
     }
