@@ -11,7 +11,7 @@
 			display: inline-block;
 			a {
 				color: white;
-				padding: 25px 15px;
+				padding: 25px 15px 15px;
 				-webkit-transition: all 0.5s ease;
 				transition: all 0.5s ease;
 				&:focus,
@@ -26,6 +26,11 @@
 				}
 			}
 		}
+	}
+	.footer-text {
+		color: white;
+		text-align: center;
+		font-family: arial;
 	}
 }
 

@@ -565,6 +565,11 @@ header.navbar {
     text-align: center; }
     .rigrap-cart .form-row.place-order input#place_order, .rigrap-checkout .form-row.place-order input#place_order {
       font-size: 2rem; }
+  .rigrap-cart label[for="ship-to-different-address-checkbox"], .rigrap-checkout label[for="ship-to-different-address-checkbox"] {
+    font-family: arial;
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    font-weight: bold; }
 
 .rigrap-cart .woocommerce table.shop_table th {
   text-align: right; }
@@ -665,6 +670,9 @@ p.product.woocommerce.add_to_cart_inline {
     .button {
       width: 90%; } }
 
+.select2-results {
+  font-family: arial, helvetica; }
+
 .post-6.page.type-page.status-publish {
   margin: 30px; }
 
@@ -680,7 +688,7 @@ p.product.woocommerce.add_to_cart_inline {
     display: inline-block; }
     #footer .nav > li a {
       color: white;
-      padding: 25px 15px;
+      padding: 25px 15px 15px;
       -webkit-transition: all 0.5s ease;
       transition: all 0.5s ease; }
       #footer .nav > li a:focus, #footer .nav > li a:hover {
@@ -690,6 +698,11 @@ p.product.woocommerce.add_to_cart_inline {
       @media (max-width: 768px) {
         #footer .nav > li a {
           padding: 10px 15px; } }
+
+#footer .footer-text {
+  color: white;
+  text-align: center;
+  font-family: arial; }
 
 #terms, #contact {
   font-family: arial, helvetica; }

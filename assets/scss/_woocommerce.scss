@@ -240,6 +240,13 @@
 			font-size: 2rem;
 		}
 	}
+
+	label[for="ship-to-different-address-checkbox"] {
+		font-family: arial;
+		font-size: 1.6rem;
+		text-transform: capitalize;
+		font-weight: bold;
+	}
 }
 
 .rigrap-cart {
@@ -355,6 +362,11 @@ p.product.woocommerce.add_to_cart_inline {
 	@media (max-width: $small) {
 		width: 90%;
 	}
+}
+
+// Woocommerce fancy select boxes {
+.select2-results {
+	font-family: arial, helvetica;
 }
 
 // Order confirmation page
