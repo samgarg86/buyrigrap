@@ -125,30 +125,6 @@ h2 {
 .text-blue {
   color: #2B5585; }
 
-.vertical-center {
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  /* align the inline(-block) elements horizontally */
-  font: 0/0 a;
-  /* remove the gap between inline(-block) elements */ }
-
-.vertical-center:before {
-  /* create a full-height inline block pseudo=element */
-  content: " ";
-  display: inline-block;
-  vertical-align: middle;
-  /* vertical alignment of the inline element */
-  height: 100%; }
-
-.vertical-center > .container {
-  max-width: 100%;
-  display: inline-block;
-  vertical-align: middle;
-  /* vertical alignment of the inline element */
-  /* reset the font property */
-  font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif; }
-
 header.navbar {
   background-color: #363435;
   border-bottom: 12px solid #E9353D;
@@ -461,6 +437,9 @@ header.navbar {
   .rigrap-cart .woocommerce table.shop_table td, .rigrap-checkout .woocommerce table.shop_table th,
   .rigrap-checkout .woocommerce table.shop_table td {
     border: none; }
+  .rigrap-cart .woocommerce table.shop_table tr.review-order-message td, .rigrap-checkout .woocommerce table.shop_table tr.review-order-message td {
+    font-size: 1.2rem;
+    font-weight: normal; }
   .rigrap-cart .shortdesc-shipping, .rigrap-checkout .shortdesc-shipping {
     font-size: 1.2rem; }
   .rigrap-cart .row.cart_item, .rigrap-checkout .row.cart_item {
@@ -529,10 +508,31 @@ header.navbar {
       .rigrap-checkout .woocommerce-checkout #payment div.payment_box .wc-credit-card-form-card-expiry,
       .rigrap-checkout .woocommerce-checkout #payment div.payment_box .wc-credit-card-form-card-cvc {
         width: 30%; }
-      .rigrap-cart #add_payment_method #payment div.payment_box .form-row,
-      .rigrap-cart .woocommerce-checkout #payment div.payment_box .form-row, .rigrap-checkout #add_payment_method #payment div.payment_box .form-row,
-      .rigrap-checkout .woocommerce-checkout #payment div.payment_box .form-row {
+      .rigrap-cart #add_payment_method #payment div.payment_box div.form-row,
+      .rigrap-cart .woocommerce-checkout #payment div.payment_box div.form-row, .rigrap-checkout #add_payment_method #payment div.payment_box div.form-row,
+      .rigrap-checkout .woocommerce-checkout #payment div.payment_box div.form-row {
         margin: 0; }
+    .rigrap-cart #add_payment_method #payment div.form-row.place-order,
+    .rigrap-cart .woocommerce-checkout #payment div.form-row.place-order, .rigrap-checkout #add_payment_method #payment div.form-row.place-order,
+    .rigrap-checkout .woocommerce-checkout #payment div.form-row.place-order {
+      padding-left: 0;
+      text-align: center; }
+      .rigrap-cart #add_payment_method #payment div.form-row.place-order .authnet-seal,
+      .rigrap-cart .woocommerce-checkout #payment div.form-row.place-order .authnet-seal, .rigrap-checkout #add_payment_method #payment div.form-row.place-order .authnet-seal,
+      .rigrap-checkout .woocommerce-checkout #payment div.form-row.place-order .authnet-seal {
+        float: left; }
+      .rigrap-cart #add_payment_method #payment div.form-row.place-order input#place_order,
+      .rigrap-cart .woocommerce-checkout #payment div.form-row.place-order input#place_order, .rigrap-checkout #add_payment_method #payment div.form-row.place-order input#place_order,
+      .rigrap-checkout .woocommerce-checkout #payment div.form-row.place-order input#place_order {
+        font-size: 2rem; }
+      .rigrap-cart #add_payment_method #payment div.form-row.place-order .terms.wc-terms-and-conditions,
+      .rigrap-cart .woocommerce-checkout #payment div.form-row.place-order .terms.wc-terms-and-conditions, .rigrap-checkout #add_payment_method #payment div.form-row.place-order .terms.wc-terms-and-conditions,
+      .rigrap-checkout .woocommerce-checkout #payment div.form-row.place-order .terms.wc-terms-and-conditions {
+        padding: 1em; }
+      .rigrap-cart #add_payment_method #payment div.form-row.place-order input.button,
+      .rigrap-cart .woocommerce-checkout #payment div.form-row.place-order input.button, .rigrap-checkout #add_payment_method #payment div.form-row.place-order input.button,
+      .rigrap-checkout .woocommerce-checkout #payment div.form-row.place-order input.button {
+        margin-top: 0.5em; }
     .rigrap-cart #add_payment_method #payment .wc_payment_method,
     .rigrap-cart .woocommerce-checkout #payment .wc_payment_method, .rigrap-checkout #add_payment_method #payment .wc_payment_method,
     .rigrap-checkout .woocommerce-checkout #payment .wc_payment_method {
@@ -561,10 +561,6 @@ header.navbar {
     position: absolute;
     right: 50px;
     bottom: 200px; }
-  .rigrap-cart .form-row.place-order, .rigrap-checkout .form-row.place-order {
-    text-align: center; }
-    .rigrap-cart .form-row.place-order input#place_order, .rigrap-checkout .form-row.place-order input#place_order {
-      font-size: 2rem; }
   .rigrap-cart label[for="ship-to-different-address-checkbox"], .rigrap-checkout label[for="ship-to-different-address-checkbox"] {
     font-family: arial;
     font-size: 1.6rem;
@@ -627,6 +623,7 @@ p.product.woocommerce.add_to_cart_inline {
 .woocommerce a.button,
 .woocommerce button.button,
 .woocommerce input.button,
+.wpcf7-form-control.wpcf7-submit,
 .button {
   font-family: arial, helvetica !important;
   font-size: 1.5rem;
@@ -637,7 +634,7 @@ p.product.woocommerce.add_to_cart_inline {
   color: white !important;
   border: none !important;
   border-radius: 35px;
-  padding: 20px 50px;
+  padding: 15px 50px;
   opacity: 1;
   float: none !important;
   position: relative;
@@ -647,6 +644,7 @@ p.product.woocommerce.add_to_cart_inline {
   .woocommerce a.button:hover,
   .woocommerce button.button:hover,
   .woocommerce input.button:hover,
+  .wpcf7-form-control.wpcf7-submit:hover,
   .button:hover {
     text-decoration: none !important;
     color: #007A42 !important;
@@ -655,6 +653,7 @@ p.product.woocommerce.add_to_cart_inline {
   .woocommerce a.button .big-arrow,
   .woocommerce button.button .big-arrow,
   .woocommerce input.button .big-arrow,
+  .wpcf7-form-control.wpcf7-submit .big-arrow,
   .button .big-arrow {
     position: absolute;
     right: 13px;
@@ -667,6 +666,7 @@ p.product.woocommerce.add_to_cart_inline {
     .woocommerce a.button,
     .woocommerce button.button,
     .woocommerce input.button,
+    .wpcf7-form-control.wpcf7-submit,
     .button {
       width: 90%; } }
 
@@ -710,3 +710,21 @@ p.product.woocommerce.add_to_cart_inline {
     margin-bottom: 30px; }
   #terms h1, #terms h2, #terms h3, #terms h4, #terms h5, #contact h1, #contact h2, #contact h3, #contact h4, #contact h5 {
     font-weight: bold; }
+
+#contact {
+  font-size: 1.4rem;
+  font-family: arial;
+  font-weight: bold; }
+  #contact .wpcf7-form-control-wrap input, #contact .wpcf7-form-control-wrap textarea {
+    width: 100%; }
+  #contact .wpcf7-form-control-wrap textarea {
+    height: 150px; }
+  #contact .wpcf7-form-control.wpcf7-submit {
+    width: 100%; }
+  #contact .address {
+    font-size: 2rem;
+    padding-left: 50px;
+    letter-spacing: 1px;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-family: 'Anton', sans-serif; }

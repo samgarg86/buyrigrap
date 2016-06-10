@@ -107,8 +107,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<th><?php _e( 'Total', 'woocommerce' ); ?></th>
 			<td><?php wc_cart_totals_order_total_html(); ?></td>
 		</tr>
+		<tr class="review-order-message">
+			<td><em>* Sales Tax 6.5% for Florida Residents only</em></td>
+		</tr>
 
 		<?php do_action( 'woocommerce_review_order_after_order_total' ); ?>
+
+
 
 	</tfoot>
 </table>

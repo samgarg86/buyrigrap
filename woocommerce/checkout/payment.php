@@ -42,6 +42,8 @@ if ( ! is_ajax() ) {
 			<br/><input type="submit" class="button alt" name="woocommerce_checkout_update_totals" value="<?php esc_attr_e( 'Update totals', 'woocommerce' ); ?>" />
 		</noscript>
 
+		<img src="/wordpress/wp-content/themes/riprag-theme/img/authnet.png" class="authnet-seal" alt="Verified Authnet Merchant"/>
+
 		<?php wc_get_template( 'checkout/terms.php' ); ?>
 
 		<?php do_action( 'woocommerce_review_order_before_submit' ); ?>

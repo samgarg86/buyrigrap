@@ -43,3 +43,31 @@
 		font-weight: bold;
 	}
 }
+
+#contact {
+	font-size: 1.4rem;
+	font-family: arial;
+	font-weight: bold;
+
+	.wpcf7-form-control-wrap  {
+		input, textarea {
+			width: 100%;
+		}
+		textarea {
+			height: 150px;
+		}
+	}
+
+	.wpcf7-form-control.wpcf7-submit {
+		width: 100%;
+	}
+
+	.address {
+		font-size: 2rem;
+		padding-left: 50px;
+		letter-spacing: 1px;
+		font-weight: normal;
+		text-transform: uppercase;
+		font-family: 'Anton', sans-serif;
+	}
+}

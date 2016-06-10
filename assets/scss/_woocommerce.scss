@@ -80,10 +80,6 @@
 	.woocommerce .woocommerce-message {
 		border: none;
 		border-radius: 10px;
-
-		//.button.wc-forward {
-		//	display: none;
-		//}
 	}
 
 	.woocommerce table.shop_table {
@@ -93,6 +89,11 @@
 	.woocommerce table.shop_table th,
 	.woocommerce table.shop_table td {
 		border: none;
+	}
+
+	.woocommerce table.shop_table tr.review-order-message td {
+		font-size: 1.2rem;
+		font-weight: normal;
 	}
 
 	.shortdesc-shipping {
@@ -113,19 +114,6 @@
 		p {
 			float: none !important;
 			width: 100% !important;
-			//&>label {
-			//	width: 30% !important;
-			//	display: inline-block !important;
-			//}
-			//&>input, &>select, &>textarea {
-			//	width: 66% !important;
-			//	display: inline-block !important;
-			//}
-		}
-
-		.select2-container {
-			//width: 66% !important;
-			//display: inline-block !important;
 		}
 
 		input.wc-credit-card-form-card-cvc {
@@ -136,21 +124,6 @@
 			margin-bottom: 20px;
 		}
 
-		//@media (min-width: $small) {
-		//	#billing_address_2_field {
-		//		padding-left: 30%;
-		//		input#billing_address_2 {
-		//			width: 94%;
-		//		}
-		//	}
-		//}
-		//
-		//@media (max-width: $small) {
-		//	label,input, select, textarea {
-		//		width: 100%;
-		//		display: block;
-		//	}
-		//}
 	}
 
 	// Payment info ugly grey boxes
@@ -192,8 +165,28 @@
 				width: 30%;
 			}
 
-			.form-row {
+			div.form-row {
 				margin: 0;
+			}
+		}
+
+		// Place order button
+		div.form-row.place-order {
+			padding-left: 0;
+			.authnet-seal {
+				float: left;
+			}
+			text-align: center;
+			input#place_order {
+				font-size: 2rem;
+			}
+
+			.terms.wc-terms-and-conditions {
+				padding: 1em;
+			}
+
+			input.button {
+				margin-top: 0.5em;
 			}
 		}
 
@@ -210,12 +203,6 @@
 			}
 
 			label[for="payment_method_authnet"] {
-				//position: absolute;
-				//bottom: 0;
-				//right: 20px;
-				//br {
-				//	display: none;
-				//}
 				font-size: 2.8rem;
 				font-family: 'Anton', sans-serif;
 				text-transform: uppercase;
@@ -227,19 +214,13 @@
 		}
 	}
 
+	// For the seal with the script only
 	.AuthorizeNetSeal {
 		position: absolute;
 		right: 50px;
 		bottom: 200px;
 	}
 
-	// Place order button
-	.form-row.place-order {
-		text-align: center;
-		input#place_order {
-			font-size: 2rem;
-		}
-	}
 
 	label[for="ship-to-different-address-checkbox"] {
 		font-family: arial;
@@ -328,6 +309,7 @@ p.product.woocommerce.add_to_cart_inline {
 .woocommerce a.button,
 .woocommerce button.button,
 .woocommerce input.button,
+.wpcf7-form-control.wpcf7-submit,
 .button {
 	font-family: arial, helvetica !important;
 	font-size: 1.5rem;
@@ -338,7 +320,7 @@ p.product.woocommerce.add_to_cart_inline {
 	color: white !important;
 	border: none !important;
 	border-radius: 35px;
-	padding: 20px 50px;
+	padding: 15px 50px;
 	opacity: 1;
 	float: none !important;
 	position: relative;
