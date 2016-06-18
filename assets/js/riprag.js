@@ -6,6 +6,8 @@ jQuery(function(){
 		halfpricevaluepacks: 3
 	}
 
+	var AJAX_URL = "/wordpress/wp-admin/admin-ajax.php";
+
 	// Menu bar cart plugin - cart icon point to checkout page instead of cart
 	jQuery('.wpmenucart-contents').attr('href', '/checkout');
 
@@ -17,7 +19,7 @@ jQuery(function(){
 		jQuery.ajax({
 			type: 'POST',
 			dataType: 'json',
-			url: "/wordpress/wp-admin/admin-ajax.php",
+			url: AJAX_URL,
 			data: {
 				action: "cart_quantities"
 			},
@@ -104,11 +106,12 @@ jQuery(function(){
 		}
 	});
 
+	// Just a test function
 	jQuery('.cart-quantities').click(function(){
 		jQuery.ajax({
 			type: 'POST',
 			dataType: 'json',
-			url: "/wordpress/wp-admin/admin-ajax.php",
+			url: AJAX_URL,
 			data: {
 				action: "cart_quantities"
 			},
@@ -152,4 +155,43 @@ jQuery(function(){
 	//		jQuery('.woocommerce-checkout-review-order-table tr.shipping').show();
 	//	}
 	//});
+
+
+	// Shopping Cart
+	jQuery('.product-remove a.remove').click(function(){
+		var $this = jQuery(this);
+		var product_id = $this.data("product_id");
+		var product_sku = $this.data("product_sku");
+		jQuery.ajax({
+			type: 'POST',
+			dataType: 'json',
+			url: AJAX_URL,
+			data: {
+				action: "product_remove",
+				product_id: product_id,
+				product_sku: product_sku
+			},
+			success: function(resp){
+				if(!resp.lineItemRemoved) {
+					console.error("Can't remove line item, something went wrong..");
+					return;
+				}
+
+				$('.row.cart_item[data-product_sku="' + product_sku + '"]').remove();
+				$('.cart-collaterals').html(resp.html);
+
+				if(resp.halfPriceDealRemoved) {
+					$('.row.cart_item[data-product_sku="halfpricevaluepacks"]').remove();
+					alert('Half Priced Value Packs are also removed. You need to add a Value Pack or Deluxe Pack to the cart to claim your Half Price Offer!');
+				}
+
+				if(resp.freeThreaderRemoved) {
+					$('.row.cart_item[data-product_sku="freethreader"]').remove();
+					alert('Free Threader Tool also removed. You need to add a Value Pack to claim your Free Threader Tool!');
+				}
+			}
+		});
+		return false;
+	});
+
 });

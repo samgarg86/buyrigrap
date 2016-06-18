@@ -149,17 +149,81 @@
 //		exit;
 //	}
 
+	function getCartId($cart, $productId) {
+		$cart_id = $cart->generate_cart_id($productId);
+		return $cart->find_product_in_cart($cart_id);
+	}
+
+	// Shopping cart remove product with ajax
+	add_action( 'wp_ajax_product_remove', 'product_remove' );
+	add_action( 'wp_ajax_nopriv_product_remove', 'product_remove' );
+	function product_remove() {
+		$productId = $_POST['product_id'];
+		$sku = $_POST['product_sku'];
+		$cart = WC()->instance()->cart;
+
+		$cart_item_id = getCartId($cart, $productId);
+		if($cart_item_id){
+			$cart->set_quantity($cart_item_id, 0);
+		}
+
+		$halfPriceDeal = false;
+
+		$halfPriceCartItemId = getCartId($cart, wc_get_product_id_by_sku('halfpricevaluepacks'));
+		if($halfPriceCartItemId) {
+			$halfPriceDeal = true;
+		}
+
+		// check for half price deal
+		if($halfPriceDeal && ($sku == 'valuepack' || $sku == 'deluxebundle')) {
+			if($sku == 'valuepack') {
+			    $deluxebundleId = wc_get_product_id_by_sku('deluxebundle');
+				if(!getCartId($cart, $deluxebundleId)) {
+					$halfPriceDeal = false;
+				}
+			}
+			else if($sku == 'deluxebundle') {
+				$valuePackId = wc_get_product_id_by_sku('valuepack');
+				if(!getCartId($cart, $valuePackId)) {
+					$halfPriceDeal = false;
+				}
+			}
+
+			if (!$halfPriceDeal) {
+				$cart->set_quantity($halfPriceCartItemId, 0);
+				$resp['halfPriceDealRemoved'] = true;
+			}
+		}
+
+		// Check for Free threader tool deal
+		if($sku == 'valuepack') {
+			$freeThreaderId = wc_get_product_id_by_sku('freethreader');
+			if($freeThreaderId) {
+				$freeThreaderCartId = getCartId($cart, $freeThreaderId);
+
+				if($freeThreaderCartId){
+					$cart->set_quantity($freeThreaderCartId, 0);
+					$resp['freeThreaderRemoved'] = true;
+				}
+			}
+		}
+
+		// render the cart totals
+		ob_start();
+		do_action( 'woocommerce_cart_collaterals' );
+		$resp['html'] = ob_get_clean();
+		$resp['lineItemRemoved'] = true;
+		echo json_encode($resp);
+
+		exit;
+	}
+
 	add_action( 'wp_ajax_cart_quantities', 'cart_quantities' );
 	add_action( 'wp_ajax_nopriv_cart_quantities', 'cart_quantities' );
 
 	function cart_quantities() {
-
 		$cart = WC()->instance()->cart;
-//		ob_start();
-
-//		$resp['html'] = ob_get_clean();
 		echo json_encode($cart->get_cart_item_quantities());
-
 		exit;
 	}
 
