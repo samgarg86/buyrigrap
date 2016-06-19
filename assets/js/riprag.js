@@ -60,7 +60,7 @@ jQuery(function(){
 	}
 
 	function checkForFreeMultiOffer (cart_quantities) {
-		return !jQuery.isEmptyObject(cart_quantities);
+		return !jQuery.isEmptyObject(cart_quantities) && valuepackId && cart_quantities[valuepackId];
 	}
 
 	// On first load, disable buttons if max quantity already added to cart
@@ -91,7 +91,7 @@ jQuery(function(){
 					"You can buy up to 3 more Value Packs for only $9.99 + S&H");
 				}
 				else if (sku == "freethreader" && !checkForFreeMultiOffer(resp)) {
-					alert("Free MultiThreader is only available if you add something else to the cart.");
+					alert("Free MultiThreader is only available if you add a Value Pack to the cart.");
 				}
 				else {
 					// Disable button if max quantity added to cart
@@ -177,16 +177,16 @@ jQuery(function(){
 					return;
 				}
 
-				$('.row.cart_item[data-product_sku="' + product_sku + '"]').remove();
-				$('.cart-collaterals').html(resp.html);
+				jQuery('.row.cart_item[data-product_sku="' + product_sku + '"]').remove();
+				jQuery('.cart-collaterals').html(resp.html);
 
 				if(resp.halfPriceDealRemoved) {
-					$('.row.cart_item[data-product_sku="halfpricevaluepacks"]').remove();
+					jQuery('.row.cart_item[data-product_sku="halfpricevaluepacks"]').remove();
 					alert('Half Priced Value Packs are also removed. You need to add a Value Pack or Deluxe Pack to the cart to claim your Half Price Offer!');
 				}
 
 				if(resp.freeThreaderRemoved) {
-					$('.row.cart_item[data-product_sku="freethreader"]').remove();
+					jQuery('.row.cart_item[data-product_sku="freethreader"]').remove();
 					alert('Free Threader Tool also removed. You need to add a Value Pack to claim your Free Threader Tool!');
 				}
 			}

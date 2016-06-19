@@ -161,10 +161,12 @@
 		$productId = $_POST['product_id'];
 		$sku = $_POST['product_sku'];
 		$cart = WC()->instance()->cart;
+		$lineItemRemoved = false;
 
 		$cart_item_id = getCartId($cart, $productId);
 		if($cart_item_id){
 			$cart->set_quantity($cart_item_id, 0);
+			$lineItemRemoved = true;
 		}
 
 		$halfPriceDeal = false;
@@ -212,7 +214,7 @@
 		ob_start();
 		do_action( 'woocommerce_cart_collaterals' );
 		$resp['html'] = ob_get_clean();
-		$resp['lineItemRemoved'] = true;
+		$resp['lineItemRemoved'] = $lineItemRemoved;
 		echo json_encode($resp);
 
 		exit;
