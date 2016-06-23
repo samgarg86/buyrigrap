@@ -346,6 +346,26 @@ p.product.woocommerce.add_to_cart_inline {
 	}
 }
 
+.coupon {
+
+	.input-text {
+		height: 45px;
+	}
+
+	input.button {
+		padding: 12px 20px;
+		font-size: 18px;
+		vertical-align: top;
+	}
+	@media (max-width: $small) {
+		text-align: right;
+		input.button {
+			width: auto;
+		}
+	}
+}
+
+
 // Woocommerce fancy select boxes {
 .select2-results {
 	font-family: arial, helvetica;

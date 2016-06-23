@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plain_text, $email ); ?>
 
-<table class="td" cellspacing="0" cellpadding="6" style="width: 100%; font-family: Arial, sans-serif; margin-top:48px" border="1">
+<table class="td order-table" cellspacing="0" cellpadding="6" style="" border="1">
 	<thead>
 		<tr>
 			<th class="td" scope="col" style="text-align:left;"><?php _e( 'Product', 'woocommerce' ); ?></th>
@@ -45,7 +45,15 @@ do_action( 'woocommerce_email_before_order_table', $order, $sent_to_admin, $plai
 				foreach ( $totals as $total ) {
 					$i++;
 					?><tr>
-						<th class="td" scope="row" colspan="2" style="text-align:left; <?php if ( $i === 1 ) echo 'border-top-width: 4px;'; ?>"><?php echo $total['label']; ?></th>
+						<th class="td" scope="row" colspan="2" style="text-align:left; <?php if ( $i === 1 ) echo 'border-top-width: 4px;'; ?>">
+							<?php
+							if ($total['label'] == 'Shipping:') {
+								echo 'Shipping Surcharge:';
+							} else if ($total['label'] == 'Tax:') {
+								echo 'Sales Tax:';
+							} else
+							echo $total['label']; ?>
+						</th>
 						<td class="td" style="text-align:left; <?php if ( $i === 1 ) echo 'border-top-width: 4px;'; ?>"><?php echo $total['value']; ?></td>
 					</tr><?php
 				}

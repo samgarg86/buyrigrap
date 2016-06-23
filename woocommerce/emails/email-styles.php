@@ -73,7 +73,7 @@ $text_lighter_20 = wc_hex_lighter( $text, 20 );
     font-family: Arial;
     font-size:12px;
     line-height:125%;
-    text-align:center;
+    text-align:left;
     padding: 48px;
 }
 
@@ -86,11 +86,11 @@ $text_lighter_20 = wc_hex_lighter( $text, 20 );
 }
 
 #body_content table td td {
-    padding: 12px;
+    padding: 10px;
 }
 
 #body_content table td th {
-    padding: 12px;
+    padding: 10px;
 }
 
 #body_content p {
@@ -174,5 +174,22 @@ img {
     outline: none;
     text-decoration: none;
     text-transform: capitalize;
+}
+#template_header_image {
+    text-align: left;
+}
+.order-table {
+    width: 100%;
+    font-family: Arial, sans-serif;
+    margin-top: 48px;
+    font-size: 10.0pt;
+}
+.order_item td {
+    text-align:left;
+    vertical-align:middle;
+    border: 1px solid #eee;
+    font-family: Arial, sans-serif;
+    word-wrap:break-word;
+    padding: 10px;
 }
 <?php

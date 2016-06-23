@@ -247,11 +247,6 @@
 		add_theme_support( 'woocommerce' );
 	}
 
-    //remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
-
-	//define( 'WOOCOMMERCE_USE_CSS', false );
-
-
 	// Main nav menu (empty menu, only for menu cart plugin to work)
 	// Add Your Menu Locations
     function register_my_menus() {
@@ -263,6 +258,16 @@
       );
     }
     add_action( 'init', 'register_my_menus' );
+
+	// Remove coupon codes from Checkout (show only once in shopping cart instead)
+    remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+
+    // Change label 'Coupon' to 'Promo Code'
+    function wc_cart_change_coupon_label ($html , $coupon) {
+		$html = 'Promo Code';
+		return $html;
+    }
+    add_filter('wc_cart_totals_coupon_label', 'wc_cart_change_coupon_label', 10, 1);
 
 
 	// To get rid of auto p tags
